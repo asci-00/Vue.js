@@ -30,6 +30,8 @@ npm run serve
   - [x] Parent Component props 전달
 - [x] Child 에서 Parent 로 event 전달
 - [x] Eventbus를 통해 상관관계 없이 event 전달 
+- [x] Vue-Router ( Nested Router, Named Router )
+- [x] Vue 통신 (Vue-resource, Axios)
 
 - [ ] Vue-cli 를 통한 프로젝트 (`typescript` 도 같이 실습)
 
