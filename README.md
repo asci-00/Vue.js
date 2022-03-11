@@ -58,10 +58,6 @@ npm run lint
 
 ### `Life-Cycle method`
 
-### 
-
-> \`\`(이중 중괄호)를 사용한 Mustache
-> 일반 텍스트이기 때문에 html 로 출력을 위해 v-html directive 사용
 
 ### v-directive
 
