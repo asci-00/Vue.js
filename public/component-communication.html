@@ -9,26 +9,28 @@
 </head>
 <body>
 <div id="app">
-    <my-component v-bind:data="message"></my-component>
+    <my-component @user-event="parentEventHandler"></my-component>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
 <script>
     Vue.component('my-component', {
         template: `
           <div>
-              <div>Component use props - {{data}}</div>
+              <button @click="onClick">emit event!</button>
           </div>
         `,
-        props: {
-            data: String,
+        methods: {
+            onClick() {
+                this.$emit('user-event'); // event emit
+            }
         }
     });
 
     new Vue({
         el: '#app',
-        data() {
-            return {
-                message: 'parent data',
+        methods: {
+            parentEventHandler() {
+                console.log('parent catch event!');
             }
         }
     });
