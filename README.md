@@ -1,5 +1,6 @@
-# vue.js
+# vue.js study
 
+---
 ## Project setup
 ```
 npm install
