@@ -11,6 +11,11 @@
     <div id="app">
         <button>Component Regist</button>
         <my-component></my-component>
+        <local-component></local-component>
+    </div>
+    <div id="app2">
+        <my-component></my-component>
+        <local-component></local-component>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
     <script>
@@ -19,8 +24,17 @@
         });
 
         new Vue({
-            el: '#app'
+            el: '#app',
+            components: {
+                'local-component': {
+                    template: '<div>Regist Local Component</div>'
+                }
+            }
         });
+
+        new Vue({
+            el: '#app2'
+        })
     </script>
 </body>
 </html>
