@@ -4,9 +4,10 @@ module.exports = {
     es2021: true,
   },
   extends: [
+    'plugin:@typescript-eslint/recommended',
+    'plugin:vue/recommended',
     'eslint:recommended',
     'plugin:vue/essential',
-    'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
   parserOptions: {
