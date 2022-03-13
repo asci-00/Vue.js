@@ -1,6 +1,6 @@
 <template>
   <section class="wrapper-item-list">
-    <ul class="item-list">
+    <transition-group name="list" tag="ul" class="item-list">
       <li v-for="(item, index) in itemList" :key="item.id">
         <span>
           <i
@@ -11,7 +11,7 @@
         </span>
         <i class="far fa-trash-alt icon delete-btn" @click="$emit('item-remove', index)"></i>
       </li>
-    </ul>
+    </transition-group>
     <button class="clear-btn" @click="$emit('item-clear')">Clear</button>
   </section>
 </template>
@@ -74,5 +74,21 @@ export default defineComponent({
   color: #cc3300;
   border-radius: 5px;
   border: 1px solid grey;
+}
+.list-enter-active,
+.list-leave-active {
+  transition: all 1s;
+}
+.list-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+.list-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
 }
 </style>
