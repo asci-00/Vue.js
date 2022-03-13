@@ -2,14 +2,7 @@
   <section class="wrapper-item-list">
     <transition-group name="list" tag="ul" class="item-list">
       <li v-for="(item, index) in itemList" :key="item.id">
-        <span>
-          <i
-            :class="`fa-solid fa-circle-check icon ${item.check && 'checked'}`"
-            @click="$emit('item-check', index)"
-          ></i>
-          {{ item.text }}
-        </span>
-        <i class="far fa-trash-alt icon delete-btn" @click="$emit('item-remove', index)"></i>
+        <slot :item="item" :index="index">{{ item }} - {{ index }}</slot>
       </li>
     </transition-group>
     <button class="clear-btn" @click="$emit('item-clear')">Clear</button>

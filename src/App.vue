@@ -1,14 +1,20 @@
 <template>
   <div id="wrapper">
-    <todo-header></todo-header>
+    <todo-header>Todo Application</todo-header>
     <todo-input @on-item-add="onItemAdd"></todo-input>
-    <todo-list
+    <todo-list-wrapper
       :item-list="itemList"
       @item-check="checkItem"
       @item-remove="removeItem"
       @item-clear="clearItemList"
-    ></todo-list>
-    <todo-footer></todo-footer>
+    ></todo-list-wrapper>
+    <todo-footer>
+      <template #link-list>
+        <a href="#" target="_blank">Blog</a> |
+        <a href="#" target="_blank">Github</a>
+      </template>
+      <template #copyright="{ owner = 'anonymous' }"> Copyright 2022. {{ owner }}. All Rights Reserved. </template>
+    </todo-footer>
   </div>
 </template>
 
@@ -16,7 +22,7 @@
 import { defineComponent } from 'vue';
 import TodoHeader from '@/components/TodoHeader.vue';
 import TodoInput from '@/components/otherVersion/TodoInput.vue';
-import TodoList from '@/components/otherVersion/TodoList.vue';
+import TodoListWrapper from '@/components/otherVersion/TodoList/TodoListWrapper.vue';
 import TodoFooter from '@/components/TodoFooter.vue';
 
 type itemType = {
@@ -29,7 +35,7 @@ export default defineComponent({
   name: 'App',
   components: {
     TodoFooter,
-    TodoList,
+    TodoListWrapper,
     TodoInput,
     TodoHeader,
   },
@@ -68,7 +74,12 @@ export default defineComponent({
 </script>
 
 <style>
+html {
+  height: 100%;
+}
 body {
+  position: relative;
+  height: calc(100% - 40px);
   text-align: center;
   background-color: #f6f6f8;
 }

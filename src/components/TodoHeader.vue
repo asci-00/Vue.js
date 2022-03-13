@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>Todo Application</h1>
+    <h1><slot>Header</slot></h1>
   </header>
 </template>
 
