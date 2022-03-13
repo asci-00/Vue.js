@@ -48,11 +48,20 @@ npm run lint
 
 ### `methods`
 
+- template 에서 호출된 method는 update hook이 발생하면 반드시 재호출됨
+  - 종속된 data 변경이 다른 data 속성이 변경되더라도 호출이 발생함
+
 ### `data`
 
 ### `props`
 
 ### `computed`
+
+- 형태는 method와 동일하지만, class의 반응형 getter와 같은 역할을 수행
+  - _method와의 공통점_
+  - data 값이 변경되었을 때, 재호출이 발생
+- data 속성의 변화가 있을 때, 이를 감지하고 자동으로 다시 연산을 수행 ( Cashing 기능 존재 )
+- computed 는 인자를 전달할 수 없음 / return 이 반드시 존재하여야 함
 
 ### `watch`
 
