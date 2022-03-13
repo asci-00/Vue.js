@@ -2,7 +2,7 @@ const { defineConfig } = require('@vue/cli-service');
 module.exports = defineConfig({
   pages: {
     index: {
-      entry: 'src/main.js',
+      entry: 'src/main.ts',
       title: 'Vue todo list',
     },
   },
