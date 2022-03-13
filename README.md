@@ -40,9 +40,9 @@ npm run lint
 
 - [ ] Vue-cli 를 통한 프로젝트 (`typescript` 도 같이 실습)
 
-## 📋 공부 내용
+# 📋 공부 내용
 
-### Vue Method
+## Vue Property
 
 ### `el`
 
@@ -57,7 +57,7 @@ npm run lint
 
 ### `computed`
 
-- 형태는 method와 동일하지만, class의 반응형 getter와 같은 역할을 수행
+- 형태는 method와 동일하지만, 반응형 `getter` / `setter`의 기능을 담당
   - _method와의 공통점_
   - data 값이 변경되었을 때, 재호출이 발생
 - data 속성의 변화가 있을 때, 이를 감지하고 자동으로 다시 연산을 수행 ( Cashing 기능 존재 )
@@ -65,10 +65,16 @@ npm run lint
 
 ### `watch`
 
+- computed 와 동일하게 해당하는 data 속성의 변경이 있을 때, 이를 감지하고 특정 동작을 수행
+- _computed는 data 속성의 변경으로 인해 해당 data의 연산된 결과를 사용하는 곳이 존재할 때 사용_
+  - ex) string이 reverse 된 값을 사용해야 되는 상황
+- watch는 data 속성의 변경으로 특정 동작을 부가적으로 수행하는 트리거 기능을 담당
+  - ex) update 가 true로 변경될 시, paint() method 를 호출해야 되는 상황 
+
 ### `Life-Cycle method`
 
 
-### v-directive
+## v-directive
 
 > Vue Directive 는 HTML 또는 Component 태그에 v- 접두사를 가지는 모든 속성을 의미함
 > 
@@ -108,6 +114,46 @@ npm run lint
 ...
 </script>
 ```
+
+## SFC *Single File Component*
+
+- html 에서 cdn을 사용하여 vue project 를 구성하거나 <br/>여러 component를 하나의 파일에 구현할 경우, 소스가 매우 복잡해지는 문제점이 발생함
+
+```vue
+<script>
+...
+  Vue.component('component', {
+    template: `<div><h5>nested markup</h5><ul>...some list markup</ul><button>click me</button>{{bindingData}}</div>`
+  });
+  Vue.component('component2', {
+    template: `...some complex markup`,
+  })
+...
+</script>
+```
+
+- 이를 개선하기 위해 하나의 .vue 파일에 독립적으로 뷰 어플리케이션을 구성하여 개발 편의성을 증대시킴
+
+```vue
+<template>
+<!--  HTML MARKUP -->
+</template>
+<script>
+export default {
+//  Javascript Source
+}
+</script>
+<style>
+/*CSS Style Content*/
+</style>
+```
+
+- 또한 Vue Project 구조를 쉽게 구성하기 위해 vue-cli npm package 를 제공
+```bash
+npm i --global @vue/cli
+vue create project-name
+```
+
 [node-url]: https://shields.io/badge/node-v16.13.1-blue?style=for-the-badge
 [npm-url]: https://shields.io/badge/npm-8.1.2-BLUE?style=for-the-badge
 [vue-url]: https://shields.io/badge/vue.js-v3-blue?style=for-the-badge
