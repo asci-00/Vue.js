@@ -154,6 +154,23 @@ npm i --global @vue/cli
 vue create project-name
 ```
 
+### 💡 keep-alive
+
+> 컴포넌트가 화면에서 가려진 후 (v-bind:is) 다시 그려지면 create life cycle method 가 호출됨
+> 
+> 이는 컴포넌트를 다시 create 후, mount하는 과정이 추가적으로 발생되는데,
+> 
+> ( beforeCreate, created, beforeMount, mounted, beforeDestory, destoryed )
+> 
+> 이는 성능상의 부하를 가져올 수 있음
+> 
+> keep-alive를 사용할 시, 해당 컴포넌트가 화면에서 가려져고 다시 그려지는 과정에서
+> 
+> basic life cycle hook이 호출되지 않고 activated() 와 deactivated() lify cycle hook이 호출 됨
+> 
+> ( 업데이트 시, beforeUpdate, updated hook은 호출됨 )
+
+
 [node-url]: https://shields.io/badge/node-v16.13.1-blue?style=for-the-badge
 [npm-url]: https://shields.io/badge/npm-8.1.2-BLUE?style=for-the-badge
 [vue-url]: https://shields.io/badge/vue.js-v3-blue?style=for-the-badge
