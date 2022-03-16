@@ -19,18 +19,65 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, inject, ref } from 'vue';
 import TodoHeader from '@/components/TodoHeader.vue';
 import TodoInput from '@/components/otherVersion/TodoInput.vue';
 import TodoListWrapper from '@/components/otherVersion/TodoList/TodoListWrapper.vue';
 import TodoFooter from '@/components/TodoFooter.vue';
+import { itemType } from '@/types';
 
-type itemType = {
-  id: number;
-  text: string;
-  check: boolean;
-};
+export default defineComponent({
+  name: 'App',
+  components: {
+    TodoFooter,
+    TodoListWrapper,
+    TodoInput,
+    TodoHeader,
+  },
+  setup() {
+    const { on } = inject('emitter') as any;
 
+    const itemList = ref<itemType[]>([
+      {
+        id: -1,
+        text: 'Some Schedule',
+        check: false,
+      },
+    ]);
+    const onItemAdd = function (item: itemType): void {
+      const text = item.text.trim();
+
+      itemList.value.push({
+        ...item,
+        text,
+      });
+    };
+    const onItemCheck = function (index: number): void {
+      itemList.value[index].check = !itemList.value[index].check;
+    };
+    const onItemRemove = function (index: number): void {
+      itemList.value.splice(index, 1);
+    };
+    const onItemClear = function (): void {
+      itemList.value = [];
+    };
+
+    on('on-item-add', onItemAdd);
+    on('on-item-check', onItemCheck);
+    on('on-item-remove', onItemRemove);
+    on('on-item-clear', onItemClear);
+
+    return {
+      itemList,
+      onItemAdd,
+      onItemCheck,
+      onItemRemove,
+      onItemClear,
+    };
+  },
+});
+
+/*
 export default defineComponent({
   name: 'App',
   components: {
@@ -71,6 +118,7 @@ export default defineComponent({
     },
   },
 });
+ */
 </script>
 
 <style>

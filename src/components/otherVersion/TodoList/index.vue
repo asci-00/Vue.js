@@ -5,12 +5,12 @@
         <slot :item="item" :index="index">{{ item }} - {{ index }}</slot>
       </li>
     </transition-group>
-    <button class="clear-btn" @click="$emit('item-clear')">Clear</button>
+    <button class="clear-btn" @click="emit('on-item-clear')">Clear</button>
   </section>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, inject } from 'vue';
 
 export default defineComponent({
   props: {
@@ -19,7 +19,11 @@ export default defineComponent({
       default: () => [],
     },
   },
-  methods: {},
+  setup() {
+    const { emit } = inject('emitter');
+
+    return { emit };
+  },
 });
 </script>
 

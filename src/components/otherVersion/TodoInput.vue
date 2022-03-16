@@ -5,30 +5,54 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
+<script lang="ts">
+import { defineComponent, inject, ref } from 'vue';
 import shortid from 'shortid';
 
 export default defineComponent({
-  data() {
-    return {
-      text: '',
-    };
-  },
-  methods: {
-    btnClick: function () {
-      if (!this.text) return;
+  setup() {
+    const { emit } = inject('emitter') as any;
 
-      this.$emit('on-item-add', {
+    const text = ref<string>('');
+    const btnClick = function () {
+      if (!text.value) return null;
+
+      emit('on-item-add', {
         id: shortid.generate(),
         check: false,
-        text: this.text,
+        text: text.value,
       });
 
-      this.text = '';
-    },
+      text.value = '';
+    };
+
+    return {
+      text,
+      btnClick,
+    };
   },
 });
+
+// export default defineComponent({
+//   data() {
+//     return {
+//       text: '',
+//     };
+//   },
+//   methods: {
+//     btnClick: function () {
+//       if (!this.text) return;
+//
+//       this.$emit('on-item-add', {
+//         id: shortid.generate(),
+//         check: false,
+//         text: this.text,
+//       });
+//
+//       this.text = '';
+//     },
+//   },
+// });
 </script>
 
 <style scoped>

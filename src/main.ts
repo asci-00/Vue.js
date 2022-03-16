@@ -1,11 +1,10 @@
+// import AsyncApp from '@/AsyncApp.vue';
 import { createApp } from 'vue';
-// import App from './App.vue';
-import AsyncApp from '@/AsyncApp.vue';
+import App from './App.vue';
 import mitt from 'mitt';
 
-const app = createApp(AsyncApp);
 const emitter = mitt();
+const app = createApp(App);
 
-app.config.globalProperties.emitter = emitter;
-
+app.provide('emitter', emitter);
 app.mount('#app');

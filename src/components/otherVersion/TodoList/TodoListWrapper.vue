@@ -2,19 +2,28 @@
   <todo-list>
     <template #default="{ item, index }">
       <span>
-        <i :class="`fa-solid fa-circle-check icon ${item.check && 'checked'}`" @click="$emit('item-check', index)"></i>
+        <i
+          :class="`fa-solid fa-circle-check icon ${item.check && 'checked'}`"
+          @click="emit('on-item-check', index)"
+        ></i>
         {{ item.text }}
       </span>
-      <i class="far fa-trash-alt icon delete-btn" @click="$emit('item-remove', index)"></i>
+      <i class="far fa-trash-alt icon delete-btn" @click="emit('on-item-remove', index)"></i>
     </template>
   </todo-list>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-import TodoList from '@/components/otherVersion/TodoList';
+<script lang="ts">
+import { defineComponent, inject } from 'vue';
+import TodoList from '@/components/otherVersion/TodoList/index.vue';
+
 export default defineComponent({
   components: { TodoList },
+  setup() {
+    const { emit } = inject('emitter') as any;
+
+    return { emit };
+  },
 });
 </script>
 

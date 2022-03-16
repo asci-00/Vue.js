@@ -13,38 +13,74 @@
   </section>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
+<script lang="ts">
+import { defineComponent, inject, ref } from 'vue';
+import { itemType } from '@/types';
 
 export default defineComponent({
-  data() {
+  setup() {
+    const emitter = inject('emitter') as any;
+
+    const itemList = ref<itemType[]>([
+      {
+        id: -1,
+        text: 'Some Schedule',
+        check: false,
+      },
+    ]);
+
+    const itemClick = function (index: number): void {
+      itemList.value[index].check = !itemList.value[index].check;
+    };
+    const removeItem = function (index: number): void {
+      itemList.value.splice(index, 1);
+    };
+    const clearItemList = function (): void {
+      itemList.value = [];
+    };
+
+    emitter.on('onItemAdd', (item: itemType) => {
+      itemList.value.push(item);
+    });
+
     return {
-      itemList: [
-        {
-          id: -1,
-          text: 'Some Schedule',
-          check: false,
-        },
-      ],
+      itemList,
+      itemClick,
+      removeItem,
+      clearItemList,
     };
   },
-  created() {
-    this.emitter.on('onItemAdd', (item) => {
-      this.itemList.push(item);
-    });
-  },
-  methods: {
-    itemClick(index) {
-      this.itemList[index].check = !this.itemList[index].check;
-    },
-    removeItem(index) {
-      this.itemList.splice(index, 1);
-    },
-    clearItemList() {
-      this.itemList = [];
-    },
-  },
 });
+
+// export default defineComponent({
+//   data() {
+//     return {
+//       itemList: [
+//         {
+//           id: -1,
+//           text: 'Some Schedule',
+//           check: false,
+//         },
+//       ],
+//     };
+//   },
+//   created() {
+//     this.emitter.on('onItemAdd', (item) => {
+//       this.itemList.push(item);
+//     });
+//   },
+//   methods: {
+//     itemClick(index) {
+//       this.itemList[index].check = !this.itemList[index].check;
+//     },
+//     removeItem(index) {
+//       this.itemList.splice(index, 1);
+//     },
+//     clearItemList() {
+//       this.itemList = [];
+//     },
+//   },
+// });
 </script>
 
 <style scoped>

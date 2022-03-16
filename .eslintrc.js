@@ -45,5 +45,6 @@ module.exports = {
     'import/no-unresolved': 'off', // ['error', { caseSensitive: false }],
     'no-param-reassign': 'off',
     'no-undef': 'off',
+    'vue/multi-word-component-names': 'off',
   },
 };

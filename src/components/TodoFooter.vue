@@ -7,15 +7,21 @@
   </footer>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
-  data() {
-    return {
-      owner: 'asci-00',
-    };
+  setup() {
+    const owner = ref<string>('asci-00');
+    return { owner };
   },
+  // export default defineComponent({
+  //   data() {
+  //     return {
+  //       owner: 'asci-00',
+  //     };
+  //   },
+  // });
 });
 </script>
 

@@ -5,32 +5,58 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
+<script lang="ts">
+import { defineComponent, inject, ref } from 'vue';
 import shortid from 'shortid';
 
 export default defineComponent({
-  data() {
-    return {
-      item: '',
-    };
-  },
-  methods: {
-    btnClick: function () {
-      if (!this.item) return;
+  setup() {
+    const emitter = inject('emitter') as any;
 
-      const text = this.item.trim();
+    const item = ref<string>('');
+    const btnClick = function () {
+      if (!item.value) return;
 
-      this.emitter.emit('onItemAdd', {
+      const text = item.value.trim();
+
+      emitter.emit('onItemAdd', {
         id: shortid.generate(),
         check: false,
         text,
       });
 
-      this.item = '';
-    },
+      item.value = '';
+    };
+
+    return {
+      item,
+      btnClick,
+    };
   },
 });
+
+// export default defineComponent({
+//   data() {
+//     return {
+//       item: '',
+//     };
+//   },
+//   methods: {
+//     btnClick: function () {
+//       if (!this.item) return;
+//
+//       const text = this.item.trim();
+//
+//       this.emitter.emit('onItemAdd', {
+//         id: shortid.generate(),
+//         check: false,
+//         text,
+//       });
+//
+//       this.item = '';
+//     },
+//   },
+// });
 </script>
 
 <style scoped>

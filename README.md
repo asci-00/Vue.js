@@ -29,7 +29,7 @@ npm run lint
 
 ## ✔ 실습 목록
 
-- [ ] Vue CDN 을 통한 프로젝트
+- [x] Vue CDN 을 통한 프로젝트
 - [x] Global Component & Local Component
 - [x] Vue Component data & props property
   - [x] Parent Component props 전달
@@ -38,11 +38,19 @@ npm run lint
 - [x] Vue-Router ( Nested Router, Named Router )
 - [x] Vue 통신 (Vue-resource, Axios)
 
-- [ ] Vue-cli 를 통한 프로젝트 (`typescript` 도 같이 실습)
+- [x] Vue-cli 를 통한 프로젝트 (`typescript` 도 같이 실습)
 
 # 📋 공부 내용
 
-## Vue Property
+## Vue.js란
+
+> Vue.js는 UI를 개발하기 위한 프로그래시브 프레임워크로 MVVM 디자인 패턴을 사용한다.
+> 
+> 핵심 라이브러리는 뷰 레이어 (뷰 모델) 만 초점을 맞추어 기존 프로젝트와의 통합이 쉬움
+
+![img_2.png](img_2.png)
+
+## Vue Instance Property
 
 ### `el`
 
@@ -70,6 +78,10 @@ npm run lint
   - ex) string이 reverse 된 값을 사용해야 되는 상황
 - watch는 data 속성의 변경으로 특정 동작을 부가적으로 수행하는 트리거 기능을 담당
   - ex) update 가 true로 변경될 시, paint() method 를 호출해야 되는 상황 
+
+### `components`
+
+### `template`
 
 ### `Life-Cycle method`
 
