@@ -2,12 +2,7 @@
   <div id="wrapper">
     <todo-header>Todo Application</todo-header>
     <todo-input @on-item-add="onItemAdd"></todo-input>
-    <todo-list-wrapper
-      :item-list="itemList"
-      @item-check="checkItem"
-      @item-remove="removeItem"
-      @item-clear="clearItemList"
-    ></todo-list-wrapper>
+    <todo-list-wrapper :item-list="itemList"></todo-list-wrapper>
     <todo-footer>
       <template #link-list>
         <a href="#" target="_blank">Blog</a> |
@@ -24,7 +19,7 @@ import TodoHeader from '@/components/TodoHeader.vue';
 import TodoInput from '@/components/otherVersion/TodoInput.vue';
 import TodoListWrapper from '@/components/otherVersion/TodoList/TodoListWrapper.vue';
 import TodoFooter from '@/components/TodoFooter.vue';
-import { itemType } from '@/types';
+import { emitterKey, emitterType, itemType } from '@/types';
 
 export default defineComponent({
   name: 'App',
@@ -35,11 +30,11 @@ export default defineComponent({
     TodoHeader,
   },
   setup() {
-    const { on } = inject('emitter') as any;
+    const { on } = inject(emitterKey) as emitterType;
 
     const itemList = ref<itemType[]>([
       {
-        id: -1,
+        id: '-1',
         text: 'Some Schedule',
         check: false,
       },
@@ -51,6 +46,8 @@ export default defineComponent({
         ...item,
         text,
       });
+
+      console.log(itemList);
     };
     const onItemCheck = function (index: number): void {
       itemList.value[index].check = !itemList.value[index].check;

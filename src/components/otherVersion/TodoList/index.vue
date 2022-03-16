@@ -9,8 +9,9 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, inject } from 'vue';
+import { emitterKey, emitterType } from '@/types';
 
 export default defineComponent({
   props: {
@@ -19,9 +20,9 @@ export default defineComponent({
       default: () => [],
     },
   },
-  setup() {
-    const { emit } = inject('emitter');
-
+  setup(props) {
+    const { emit } = inject(emitterKey) as emitterType;
+    console.log(props.itemList);
     return { emit };
   },
 });

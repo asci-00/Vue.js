@@ -23,7 +23,7 @@ export default defineComponent({
 
     const itemList = ref<itemType[]>([
       {
-        id: -1,
+        id: '-1',
         text: 'Some Schedule',
         check: false,
       },

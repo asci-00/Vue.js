@@ -8,10 +8,11 @@
 <script lang="ts">
 import { defineComponent, inject, ref } from 'vue';
 import shortid from 'shortid';
+import { emitterKey, emitterType } from '@/types';
 
 export default defineComponent({
   setup() {
-    const { emit } = inject('emitter') as any;
+    const { emit } = inject(emitterKey) as emitterType;
 
     const text = ref<string>('');
     const btnClick = function () {

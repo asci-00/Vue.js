@@ -16,12 +16,12 @@
 <script lang="ts">
 import { defineComponent, inject } from 'vue';
 import TodoList from '@/components/otherVersion/TodoList/index.vue';
+import { emitterKey, emitterType } from '@/types';
 
 export default defineComponent({
   components: { TodoList },
   setup() {
-    const { emit } = inject('emitter') as any;
-
+    const { emit } = inject(emitterKey) as emitterType;
     return { emit };
   },
 });
