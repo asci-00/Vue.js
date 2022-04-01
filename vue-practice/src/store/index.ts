@@ -1,3 +1,4 @@
 import { createStore } from 'vuex';
-import news from '@/views/News.vue';
-export default createStore({ modules: { post, news } });
+import news from '@/store/news';
+import jobs from '@/store/jobs';
+export default createStore({ modules: { jobs, news } });
