@@ -10,7 +10,7 @@
   </header>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -22,10 +22,12 @@ export default defineComponent({
 
 <style lang="scss">
 #header {
-  background: #c8f0c8;
+  background: #f0f0f0;
   padding: 10px;
   display: flex;
   align-items: center;
+  color: #282828;
+
   .title {
     font-family: $font-family-head;
     font-size: 1.8em;
@@ -35,12 +37,15 @@ export default defineComponent({
     font-family: $font-family-title;
     text-decoration: none;
     display: inline-block;
-    background: #507850;
     text-align: center;
     margin: 10px 10px;
-    color: #f0f0f0;
+    color: #505050;
     padding: 10px;
     width: 100px;
+    font-weight: 900;
+    &.router-link-active {
+      background: #c8f050;
+    }
   }
 }
 </style>

@@ -6,7 +6,12 @@ import Ask from '@/views/Ask.vue';
 const routes = [
   {
     path: '/',
+    redirect: '/news',
+  },
+  {
+    path: '/news',
     component: News,
+    meta: { keepAlive: true },
   },
   {
     path: '/jobs',
