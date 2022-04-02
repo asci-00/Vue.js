@@ -6,6 +6,7 @@ module.exports = defineConfig({
       sass: {
         additionalData: `
           @import "@/assets/scss/global.scss";
+          @import "@/assets/scss/common.scss";
         `,
       },
     },
