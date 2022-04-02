@@ -1,0 +1,20 @@
+.badge {
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+
+}
+.primary {
+  background: #8D8DAA;
+  color: #373B44;
+}
+.secondary {
+  background: #FFA8A8;
+  color: #373B44;
+}
+
+.page-header {
+  font-size:2em;
+  font-weight: 900;
+  font-family: $font-family-title;
+}
