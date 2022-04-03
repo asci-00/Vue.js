@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <div>
+    <header class="page-header">Jobs</header>
+  </div>
 </template>
 
 <script>

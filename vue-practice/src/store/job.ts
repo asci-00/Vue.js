@@ -15,18 +15,18 @@ const JobStore: Module<JobStoreType, RootState> = {
     };
   },
   mutations: {
-    SET_JOB_LIST(state, newsList: JobType[]) {
-      state.data = [...newsList];
+    SET_JOB_LIST(state, jobList: JobType[]) {
+      state.data = [...jobList];
     },
   },
   actions: {
     async FETCH_JOB({ commit }, postNumber: number) {
       const response = await getJob(postNumber);
-      const newsList = response.map((item: JobType) => ({
+      const jobList = response.map((item: JobType) => ({
         ...item,
         date: new Date(item.time).toLocaleDateString(),
       }));
-      commit('SET_JOB_LIST', newsList);
+      commit('SET_JOB_LIST', jobList);
     },
   },
 };
