@@ -1,25 +1,27 @@
 <template>
   <ul class="post-container">
-    <li v-for="post in postList" :key="post.id" class="post-item" @click="moveToUrl(post.url)">
-      <span class="post-item__title">{{ post.title }}</span>
-      <span class="post-item__user">{{ post.user }}</span>
-      <span class="post-item__date badge primary">{{ post.date }}</span>
+    <li v-for="item in data" :key="item.id" class="item" @click="moveToUrl(item.url)">
+      <span class="item__title">{{ item.title }}</span>
+      <span class="item__user">{{ item.user }}</span>
+      <span class="item__date badge primary">{{ item.date }}</span>
     </li>
   </ul>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue';
-import { useStore } from 'vuex';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
-  props: {},
-  async setup() {
+  props: {
+    data: {
+      type: Array,
+      default: () => [],
+    },
+  },
+  setup() {
     const moveToUrl = (url: string) => window.open(url, '_black');
 
-    return {
-      moveToUrl,
-    };
+    return { moveToUrl };
   },
 });
 </script>
@@ -30,7 +32,7 @@ ul.post-container {
   padding: 0;
   margin: 0;
 }
-li.post-item {
+li.item {
   background: #f0f0f0;
   cursor: pointer;
   margin: 10px 0;
@@ -43,13 +45,13 @@ li.post-item {
     white-space: nowrap;
     overflow: hidden;
     padding: 0 10px;
-    &.post-item__title {
+    &.item__title {
       flex-basis: 100%;
     }
-    &.post-item__user {
+    &.item__user {
       flex-basis: 180px;
     }
-    &.post-item__date {
+    &.item__date {
       flex-basis: 150px;
     }
   }
