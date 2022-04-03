@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import News from '@/views/News.vue';
-import Jobs from '@/views/Jobs.vue';
-import Ask from '@/views/Asks.vue';
+import Jobs from '@/views/Job.vue';
+import Ask from '@/views/Ask.vue';
 
 const routes = [
   {
