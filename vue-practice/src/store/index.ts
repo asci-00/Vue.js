@@ -1,11 +1,12 @@
+import { NewsType, JobType } from '@/models';
 import { createStore } from 'vuex';
 import news from '@/store/news';
-import jobs from '@/store/jobs';
-import { NewsType, JobType } from '@/models';
+import job from '@/store/job';
+import ask from '@/store/ask';
 
 export interface RootState {
   NewsType: NewsType;
   JobType: JobType;
 }
 
-export default createStore({ modules: { jobs, news } });
+export default createStore({ modules: { job, news, ask } });

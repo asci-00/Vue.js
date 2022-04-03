@@ -15,18 +15,18 @@ const AskStore: Module<AskStoreType, RootState> = {
     };
   },
   mutations: {
-    SET_ASK_LIST(state, newsList: AskType[]) {
-      state.data = [...newsList];
+    SET_ASK_LIST(state, askList: AskType[]) {
+      state.data = [...askList];
     },
   },
   actions: {
     async FETCH_ASK({ commit }, postNumber: number) {
       const response = await getAsk(postNumber);
-      const newsList = response.map((item: AskType) => ({
+      const askList = response.map((item: AskType) => ({
         ...item,
         date: new Date(item.time).toLocaleDateString(),
       }));
-      commit('SET_JOB_LIST', newsList);
+      commit('SET_ASK_LIST', askList);
     },
   },
 };
