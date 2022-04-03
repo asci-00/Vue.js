@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import News from '@/views/News.vue';
-import Jobs from '@/views/Job.vue';
-import Ask from '@/views/Ask.vue';
+import News from '@/views/News';
+import Jobs from '@/views/Job';
+import Ask from '@/views/Ask';
 
 const routes = [
   {
@@ -11,7 +11,6 @@ const routes = [
   {
     path: '/news',
     component: News,
-    meta: { keepAlive: true },
   },
   {
     path: '/jobs',

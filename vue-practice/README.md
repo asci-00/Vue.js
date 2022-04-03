@@ -64,6 +64,39 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 </router-view>
 ```
 
+### Typescript declare `d.ts`
+
+> 선언 파일 d.ts는 타입스크립트 코드의 타입 추론을 돕는 파일
+>
+> 타입스크립트 파일에서 사용할 수는 있지만, 선언되어 있지 않은 전역 변수나 전역 함수도 기입 가능
+
+```typescript
+/* eslint-disable */
+declare module '*.vue' {
+  import type { DefineComponent } from 'vue'
+  const component: DefineComponent<{}, {}, any>
+  export default component
+}
+```
+
+> vue-cli typescript shim-vue.d.ts 는 위와같이 구성되어있다.
+>
+> 이는 vue 파일을 확장자 없이 사용할 수 있도록 typescript 를 설정해주는데,
+>
+> 이 설정이 전역에서 동작하지 않는 문제점이 발생했다.
+>
+> 임시적인 해결 방법으로 아래와 같이 수정해서 해결하였다.
+> 
+> 왜 안되는지 아직 이해 못함..
+
+```typescript
+/* eslint-disable */
+declare module '@/*' {
+  import type { DefineComponent } from 'vue'
+  const component: DefineComponent<{}, {}, any>
+  export default component
+}
+```
 
 [node-url]: https://shields.io/badge/node-v16.13.1-blue?style=for-the-badge
 [npm-url]: https://shields.io/badge/npm-8.1.2-BLUE?style=for-the-badge
