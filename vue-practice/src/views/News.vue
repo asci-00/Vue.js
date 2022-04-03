@@ -1,19 +1,27 @@
 <template>
   <div>
-    <Suspense>
-      <template #fallback>Loading Component</template>
-      <news-list />
-    </Suspense>
+    <header class="page-header">News</header>
+    <post-list :data="newsList" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import NewsList from '@/components/NewsList';
+import { computed, defineComponent } from 'vue';
+import PostList from '@/components/PostList';
+import { useStore } from 'vuex';
 
 export default defineComponent({
   components: {
-    NewsList,
+    PostList,
+  },
+
+  setup() {
+    const store = useStore();
+
+    store.dispatch('news/FETCH_NEWS', 1);
+    const newsList = computed(() => store.state.news.data);
+
+    return { newsList };
   },
 });
 </script>
