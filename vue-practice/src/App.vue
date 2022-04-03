@@ -1,17 +1,7 @@
 <template>
-  <section id="wrapper">
+  <section id="main-wrapper">
     <app-navigation />
-    <router-view v-slot="{ Component, route }">
-      <transition :name="route.meta.transition || 'fade'" mode="out-in">
-        <suspense>
-          <template #default>
-            <keep-alive>
-              <component :is="Component" :key="route.path" />
-            </keep-alive>
-          </template>
-        </suspense>
-      </transition>
-    </router-view>
+    <section id="main-section"><router-view /></section>
   </section>
 </template>
 
@@ -25,4 +15,8 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+#main-section {
+  padding: 20px;
+}
+</style>

@@ -1,11 +1,10 @@
 <template>
   <header id="header">
-    <div class="title">Example Project</div>
+    <div class="title"><router-link to="/">Example Project</router-link></div>
     <nav id="navigation">
-      <router-link to="/">Home</router-link>
       <router-link to="/news">News</router-link>
       <router-link to="/jobs">Jobs</router-link>
-      <router-link to="/ask">Ask</router-link>
+      <router-link to="/ask">Asks</router-link>
     </nav>
   </header>
 </template>
@@ -13,11 +12,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-export default defineComponent({
-  setup() {
-    console.log('test');
-  },
-});
+export default defineComponent({});
 </script>
 
 <style lang="scss">
@@ -29,13 +24,15 @@ export default defineComponent({
   color: #282828;
 
   .title {
-    font-family: $font-family-head;
-    font-size: 1.8em;
-    width: 250px;
+    margin-right: 60px;
+    a {
+      font-family: $font-family-head;
+      font-size: 1.8em;
+      width: 250px;
+    }
   }
-  a {
+  #navigation a {
     font-family: $font-family-title;
-    text-decoration: none;
     display: inline-block;
     text-align: center;
     margin: 10px 10px;
