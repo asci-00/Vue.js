@@ -1,15 +1,17 @@
 <template>
   <ul class="post-container">
-    <li v-for="item in data" :key="item.id" class="item" @click="moveToUrl(item.url)">
-      <span class="item__title">{{ item.title }}</span>
-      <span class="item__user">{{ item.user }}</span>
+    <li v-for="item in data" :key="item.id" class="item">
+      <span class="item__title" @click="moveToPost(item.id)">{{ item.title }}</span>
+      <span class="item__user" @click="moveToUser(item.user)">{{ item.user }}</span>
       <span class="item__date badge primary">{{ item.date }}</span>
+      <span class="item__ago badge secondary">{{ item.time_ago }}</span>
     </li>
   </ul>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
   props: {
@@ -19,9 +21,11 @@ export default defineComponent({
     },
   },
   setup() {
-    const moveToUrl = (url: string) => window.open(url, '_black');
+    const router = useRouter();
 
-    return { moveToUrl };
+    const moveToPost = (id: string) => router.push(`/item/${id}`);
+    const moveToUser = (name: string) => router.push(`/user/${name}`);
+    return { moveToPost, moveToUser };
   },
 });
 </script>
@@ -53,6 +57,11 @@ li.item {
     }
     &.item__date {
       flex-basis: 150px;
+      border-radius: 2px 0 0 2px;
+    }
+    &.item__ago {
+      flex-basis: 150px;
+      border-radius: 0 2px 2px 0;
     }
   }
 }
