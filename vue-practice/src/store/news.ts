@@ -1,7 +1,7 @@
 import { Module } from 'vuex';
 import { NewsType } from '@/models';
 import { RootState } from '@/store';
-import { getNews } from '@/api/news';
+import { getNews } from '@/api/apis';
 
 interface NewsStoreType {
   data: NewsType[];

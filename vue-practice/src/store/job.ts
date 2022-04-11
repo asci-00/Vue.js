@@ -1,7 +1,7 @@
 import { Module } from 'vuex';
 import { JobType } from '@/models';
 import { RootState } from '@/store';
-import { getJob } from '@/api/job';
+import { getJob } from '@/api/apis';
 
 interface JobStoreType {
   data: JobType[];

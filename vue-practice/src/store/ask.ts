@@ -1,10 +1,10 @@
 import { Module } from 'vuex';
-import { AskType } from '@/models';
+import { PostType } from '@/models';
 import { RootState } from '@/store';
-import { getAsk } from '@/api/ask';
+import { getAsk } from '@/api/apis';
 
 interface AskStoreType {
-  data: AskType[];
+  data: PostType[];
 }
 
 const AskStore: Module<AskStoreType, RootState> = {
@@ -15,14 +15,14 @@ const AskStore: Module<AskStoreType, RootState> = {
     };
   },
   mutations: {
-    SET_ASK_LIST(state, askList: AskType[]) {
+    SET_ASK_LIST(state, askList: PostType[]) {
       state.data = [...askList];
     },
   },
   actions: {
     async FETCH_ASK({ commit }, postNumber: number) {
       const response = await getAsk(postNumber);
-      const askList = response.map((item: AskType) => ({
+      const askList = response.map((item: PostType) => ({
         ...item,
         date: new Date(item.time).toLocaleDateString(),
       }));
