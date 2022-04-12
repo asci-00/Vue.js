@@ -55,3 +55,5 @@ export interface CommentType {
   url: string;
   user: string;
 }
+
+export type Response = () => Promise<any>;
