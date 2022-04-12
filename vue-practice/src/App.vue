@@ -28,10 +28,13 @@ export default defineComponent({
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s;
+  max-height: 1200px;
+  opacity: 1;
+  transition: all 0.8s;
 }
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+  max-height: 0;
 }
 </style>
