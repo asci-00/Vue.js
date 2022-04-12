@@ -1,7 +1,13 @@
 <template>
   <section id="main-wrapper">
     <app-navigation />
-    <section id="main-section"><router-view /></section>
+    <section id="main-section">
+      <router-view v-slot="{ Component }">
+        <Transition name="fade">
+          <component :is="Component" />
+        </Transition>
+      </router-view>
+    </section>
   </section>
 </template>
 
@@ -15,8 +21,17 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 #main-section {
   padding: 20px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
