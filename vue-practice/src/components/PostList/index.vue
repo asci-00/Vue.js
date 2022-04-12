@@ -1,8 +1,9 @@
 <template>
   <ul class="post-container">
     <li v-for="item in data" :key="item.id" class="item">
+      <span class="item__point" @click="moveToPost(item.id)">{{ item.points ? item.points : 0 }}</span>
       <span class="item__title" @click="moveToPost(item.id)">{{ item.title }}</span>
-      <span class="item__user" @click="moveToUser(item.user)">{{ item.user }}</span>
+      <span class="item__user" @click="moveToUser(item.user)">by {{ item.user }}</span>
       <span class="item__date badge primary">{{ item.date }}</span>
       <span class="item__ago badge secondary">{{ item.time_ago }}</span>
     </li>
@@ -39,21 +40,26 @@ ul.post-container {
 li.item {
   background: #f0f0f0;
   cursor: pointer;
-  margin: 10px 0;
   display: flex;
   width: 100%;
-  padding: 10px;
-  border-bottom: 4px solid grey;
+  padding: 20px 10px;
+  border-bottom: 1px solid grey;
   span {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
     padding: 0 10px;
+    &.item__point {
+      flex-basis: 80px;
+      color: #64b970;
+      font-weight: 900;
+    }
     &.item__title {
       flex-basis: 100%;
     }
     &.item__user {
       flex-basis: 180px;
+      color: #505050;
     }
     &.item__date {
       flex-basis: 150px;
